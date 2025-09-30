@@ -9,4 +9,10 @@
     <string name="passwordPlaceholder">Enter Password</string>
     <string name="radioButtonLabel">RadioButton</string>
     <string name="checkboxLabel">CheckBox</string>
+    <string name="nextButton">Next</string>
+
+    <string name="dialog_message">Do you want to exit?</string>
+    <string name="dialog_title">Confirm</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 </resources>

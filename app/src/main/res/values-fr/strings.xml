@@ -10,4 +10,10 @@
     <string name="passwordPlaceholder">Entrez le mot de passe</string>
     <string name="radioButtonLabel">Bouton Radio</string>
     <string name="checkboxLabel">Case à cocher</string>
+    <string name="nextButton">Suivant</string>
+
+    <string name="dialog_message">Voulez-vous quitter?</string>
+    <string name="dialog_title">Confirmer</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Annuler</string>
 </resources>
