@@ -118,6 +118,7 @@ public class ListItemsActivity extends AppCompatActivity {
      * @param message - The message to display
      */
     public void print(String message) {
+        Log.i(ACTIVITY_NAME, "Inside the print method");
         Toast toast = Toast.makeText(this, message, duration);
         toast.show();
     }
