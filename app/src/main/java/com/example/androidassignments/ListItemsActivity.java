@@ -140,7 +140,7 @@ public class ListItemsActivity extends AppCompatActivity {
                 Log.e(ACTIVITY_NAME, "Intent data or extras are null");
             }
         } else {
-            Log.w(ACTIVITY_NAME, "Image capture failed or was cancelled. Result code: " + resultCode);
+            Log.e(ACTIVITY_NAME, "Image capture failed or was cancelled. Result code: " + resultCode);
         }
     }
 
