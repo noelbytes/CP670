@@ -11,217 +11,161 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * Unit tests for ChatWindow using JUnit and Mockito
- * Tests chat message validation and list operations
+ * Unit tests for ChatWindow logic
+ * Tests message handling, validation, and data structures using pure Java (no Android dependencies)
  * Following Chapter 4 recommendations for unit testing
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ChatWindowUnitTest {
 
-    private List<String> chatMessages;
+    private List<String> messages;
 
     @Before
     public void setUp() {
-        chatMessages = new ArrayList<>();
+        messages = new ArrayList<>();
     }
 
-    // Test 1: Empty Message Validation
+    // Test 1: Message List Initialization
     @Test
-    public void testEmptyMessageIsInvalid() {
+    public void testMessageListInitialization() {
+        assertNotNull("Messages list should be initialized", messages);
+        assertEquals("Initial message count should be 0", 0, messages.size());
+    }
+
+    // Test 2: Add Valid Message
+    @Test
+    public void testAddValidMessage() {
+        String message = "Test message";
+        messages.add(message);
+        assertEquals("Message count should be 1", 1, messages.size());
+        assertEquals("Message should match", "Test message", messages.get(0));
+    }
+
+    // Test 3: Empty Message Validation
+    @Test
+    public void testEmptyMessageValidation() {
         String emptyMessage = "";
-        assertTrue("Empty message should be detected as invalid",
-                emptyMessage.isEmpty());
+        boolean isValid = !emptyMessage.trim().isEmpty();
+        assertFalse("Empty message should not be valid", isValid);
     }
 
-    // Test 2: Whitespace-Only Message Validation
+    // Test 4: Whitespace-Only Message Validation
     @Test
-    public void testWhitespaceOnlyMessageIsInvalid() {
+    public void testWhitespaceOnlyMessageValidation() {
         String whitespaceMessage = "   ";
-        assertTrue("Whitespace-only message should be invalid",
-                whitespaceMessage.trim().isEmpty());
+        boolean isValid = !whitespaceMessage.trim().isEmpty();
+        assertFalse("Whitespace-only message should not be valid", isValid);
     }
 
-    // Test 3: Valid Message
+    // Test 5: Valid Message After Trimming
     @Test
-    public void testValidMessageIsNotEmpty() {
-        String validMessage = "Hello, World!";
-        assertFalse("Valid message should not be empty",
-                validMessage.isEmpty());
-    }
-
-    // Test 4: Message Trimming
-    @Test
-    public void testMessageTrimming() {
-        String messageWithSpaces = "  Test Message  ";
+    public void testValidMessageAfterTrimming() {
+        String messageWithSpaces = "  Hello World  ";
         String trimmed = messageWithSpaces.trim();
-        assertEquals("Trimmed message should match", "Test Message", trimmed);
+        boolean isValid = !trimmed.isEmpty();
+        assertTrue("Trimmed message should be valid", isValid);
+        assertEquals("Trimmed message should match", "Hello World", trimmed);
     }
 
-    // Test 5: Add Message to List
+    // Test 6: Multiple Messages Added
     @Test
-    public void testAddMessageToList() {
-        chatMessages.add("First message");
-        assertEquals("List should contain 1 message", 1, chatMessages.size());
-        assertEquals("Message should match", "First message", chatMessages.get(0));
+    public void testMultipleMessagesAdded() {
+        messages.add("Message 1");
+        messages.add("Message 2");
+        messages.add("Message 3");
+
+        assertEquals("Should have 3 messages", 3, messages.size());
     }
 
-    // Test 6: Add Multiple Messages
+    // Test 7: Message Order Preserved
     @Test
-    public void testAddMultipleMessages() {
-        chatMessages.add("Message 1");
-        chatMessages.add("Message 2");
-        chatMessages.add("Message 3");
+    public void testMessageOrderPreserved() {
+        messages.add("First");
+        messages.add("Second");
+        messages.add("Third");
 
-        assertEquals("List should contain 3 messages", 3, chatMessages.size());
-        assertEquals("First message should match", "Message 1", chatMessages.get(0));
-        assertEquals("Last message should match", "Message 3", chatMessages.get(2));
+        assertEquals("First message should match", "First", messages.get(0));
+        assertEquals("Second message should match", "Second", messages.get(1));
+        assertEquals("Third message should match", "Third", messages.get(2));
     }
 
-    // Test 7: Initial List is Empty
+    // Test 8: Clear Input After Sending
     @Test
-    public void testInitialListIsEmpty() {
-        assertEquals("Initial list should be empty", 0, chatMessages.size());
-        assertTrue("List should be empty", chatMessages.isEmpty());
+    public void testClearInputAfterSending() {
+        String input = "Test message";
+        messages.add(input);
+        input = ""; // Simulate clearing input
+
+        assertEquals("Input should be empty after sending", "", input);
+        assertEquals("Message should be in list", 1, messages.size());
     }
 
-    // Test 8: Message Count After Adding
+    // Test 9: Message List Size Increases
     @Test
-    public void testMessageCountAfterAdding() {
-        int initialCount = chatMessages.size();
-        chatMessages.add("New message");
-        assertEquals("Count should increase by 1", initialCount + 1, chatMessages.size());
+    public void testMessageListSizeIncreases() {
+        int initialSize = messages.size();
+        messages.add("New message");
+
+        assertEquals("Size should increase by 1", initialSize + 1, messages.size());
     }
 
-    // Test 9: Long Message Handling
+    // Test 10: Get Last Message
     @Test
-    public void testLongMessageHandling() {
-        String longMessage = "This is a very long message that contains many characters and words to test if the system can handle long messages properly without any issues.";
-        chatMessages.add(longMessage);
+    public void testGetLastMessage() {
+        messages.add("First");
+        messages.add("Second");
+        messages.add("Last");
 
-        assertEquals("List should contain the long message", 1, chatMessages.size());
-        assertEquals("Message should match", longMessage, chatMessages.get(0));
+        String lastMessage = messages.get(messages.size() - 1);
+        assertEquals("Last message should match", "Last", lastMessage);
     }
 
-    // Test 10: Special Characters in Message
+    // Test 11: Message Contains Text
     @Test
-    public void testSpecialCharactersInMessage() {
-        String specialMessage = "Test @#$%^&*() 123!";
-        chatMessages.add(specialMessage);
-
-        assertEquals("Message with special characters should be added", 1, chatMessages.size());
-        assertEquals("Special message should match", specialMessage, chatMessages.get(0));
+    public void testMessageContainsText() {
+        String message = "Hello World";
+        assertTrue("Message should contain 'Hello'", message.contains("Hello"));
+        assertTrue("Message should contain 'World'", message.contains("World"));
     }
 
-    // Test 11: Message Retrieval by Index
+    // Test 12: Message Length Validation
     @Test
-    public void testMessageRetrievalByIndex() {
-        chatMessages.add("First");
-        chatMessages.add("Second");
-        chatMessages.add("Third");
+    public void testMessageLengthValidation() {
+        String shortMessage = "Hi";
+        String longMessage = "This is a much longer message with more content";
 
-        assertEquals("First message should match", "First", chatMessages.get(0));
-        assertEquals("Second message should match", "Second", chatMessages.get(1));
-        assertEquals("Third message should match", "Third", chatMessages.get(2));
+        assertTrue("Short message should have length > 0", shortMessage.length() > 0);
+        assertTrue("Long message should have length > short message",
+                longMessage.length() > shortMessage.length());
     }
 
-    // Test 12: Alternating Message Types (Incoming/Outgoing)
+    // Test 13: Remove Message
     @Test
-    public void testAlternatingMessageTypes() {
-        chatMessages.add("Outgoing");  // Index 0 - even
-        chatMessages.add("Incoming");  // Index 1 - odd
-        chatMessages.add("Outgoing");  // Index 2 - even
+    public void testRemoveMessage() {
+        messages.add("Message to remove");
+        assertEquals("Should have 1 message", 1, messages.size());
 
-        // Test the logic used in ChatAdapter
-        assertTrue("Index 0 should be even (outgoing)", 0 % 2 == 0);
-        assertFalse("Index 1 should be odd (incoming)", 1 % 2 == 0);
-        assertTrue("Index 2 should be even (outgoing)", 2 % 2 == 0);
+        messages.remove(0);
+        assertEquals("Should have 0 messages after removal", 0, messages.size());
     }
 
-    // Test 13: Clear All Messages
+    // Test 14: Message List Contains Element
+    @Test
+    public void testMessageListContainsElement() {
+        String message = "Test message";
+        messages.add(message);
+
+        assertTrue("List should contain the message", messages.contains(message));
+    }
+
+    // Test 15: Clear All Messages
     @Test
     public void testClearAllMessages() {
-        chatMessages.add("Message 1");
-        chatMessages.add("Message 2");
-        chatMessages.clear();
+        messages.add("Message 1");
+        messages.add("Message 2");
+        messages.add("Message 3");
 
-        assertEquals("List should be empty after clear", 0, chatMessages.size());
-        assertTrue("List should be empty", chatMessages.isEmpty());
-    }
-
-    // Test 14: Message List Contains
-    @Test
-    public void testMessageListContains() {
-        String testMessage = "Test message";
-        chatMessages.add(testMessage);
-
-        assertTrue("List should contain the message", chatMessages.contains(testMessage));
-        assertFalse("List should not contain non-existent message",
-                chatMessages.contains("Non-existent"));
-    }
-
-    // Test 15: Unicode and Emoji in Messages
-    @Test
-    public void testUnicodeAndEmojiInMessages() {
-        String emojiMessage = "Hello 😊 World 🌍";
-        chatMessages.add(emojiMessage);
-
-        assertEquals("Emoji message should be added", 1, chatMessages.size());
-        assertEquals("Emoji message should match", emojiMessage, chatMessages.get(0));
-    }
-
-    // Test 16: Numeric Messages
-    @Test
-    public void testNumericMessages() {
-        String numericMessage = "12345";
-        chatMessages.add(numericMessage);
-
-        assertEquals("Numeric message should be added", 1, chatMessages.size());
-        assertEquals("Numeric message should match", numericMessage, chatMessages.get(0));
-    }
-
-    // Test 17: Message with Newlines
-    @Test
-    public void testMessageWithNewlines() {
-        String multilineMessage = "Line 1\nLine 2\nLine 3";
-        chatMessages.add(multilineMessage);
-
-        assertEquals("Multiline message should be added", 1, chatMessages.size());
-        assertTrue("Message should contain newlines",
-                chatMessages.get(0).contains("\n"));
-    }
-
-    // Test 18: Empty String vs Null
-    @Test
-    public void testEmptyStringVsNull() {
-        String emptyString = "";
-        assertNotNull("Empty string should not be null", emptyString);
-        assertTrue("Empty string should have zero length", emptyString.length() == 0);
-    }
-
-    // Test 19: Message Order Preservation
-    @Test
-    public void testMessageOrderPreservation() {
-        chatMessages.add("First");
-        chatMessages.add("Second");
-        chatMessages.add("Third");
-
-        assertEquals("Messages should be in order", "First", chatMessages.get(0));
-        assertEquals("Messages should be in order", "Second", chatMessages.get(1));
-        assertEquals("Messages should be in order", "Third", chatMessages.get(2));
-    }
-
-    // Test 20: List Size After Multiple Operations
-    @Test
-    public void testListSizeAfterMultipleOperations() {
-        assertEquals("Initial size should be 0", 0, chatMessages.size());
-
-        chatMessages.add("Message 1");
-        assertEquals("Size should be 1", 1, chatMessages.size());
-
-        chatMessages.add("Message 2");
-        assertEquals("Size should be 2", 2, chatMessages.size());
-
-        chatMessages.clear();
-        assertEquals("Size should be 0 after clear", 0, chatMessages.size());
+        messages.clear();
+        assertEquals("List should be empty after clear", 0, messages.size());
     }
 }

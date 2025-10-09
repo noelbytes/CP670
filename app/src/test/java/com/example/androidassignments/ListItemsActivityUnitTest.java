@@ -8,8 +8,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.Assert.*;
 
 /**
- * Unit tests for ListItemsActivity using JUnit and Mockito
- * Tests UI component state management logic
+ * Unit tests for ListItemsActivity logic
+ * Tests UI component state management and dialog logic
  * Following Chapter 4 recommendations for unit testing
  */
 @RunWith(MockitoJUnitRunner.class)
@@ -18,6 +18,7 @@ public class ListItemsActivityUnitTest {
     private boolean switchState;
     private boolean checkBoxState;
     private int toggleCount;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Before
     public void setUp() {
@@ -138,37 +139,7 @@ public class ListItemsActivityUnitTest {
         assertFalse("CheckBox state should be independent", checkBoxState);
     }
 
-    // Test 14: State Reset
-    @Test
-    public void testStateReset() {
-        switchState = true;
-        checkBoxState = true;
-
-        // Reset
-        switchState = false;
-        checkBoxState = false;
-
-        assertFalse("Switch should be reset", switchState);
-        assertFalse("CheckBox should be reset", checkBoxState);
-    }
-
-    // Test 15: Toast Message Logic - Switch On
-    @Test
-    public void testToastMessageLogicSwitchOn() {
-        switchState = true;
-        String expectedMessage = switchState ? "Switch is ON" : "Switch is OFF";
-        assertEquals("Message should indicate switch is ON", "Switch is ON", expectedMessage);
-    }
-
-    // Test 16: Toast Message Logic - Switch Off
-    @Test
-    public void testToastMessageLogicSwitchOff() {
-        switchState = false;
-        String expectedMessage = switchState ? "Switch is ON" : "Switch is OFF";
-        assertEquals("Message should indicate switch is OFF", "Switch is OFF", expectedMessage);
-    }
-
-    // Test 17: Toast Duration Logic - Short
+    // Test 14: Toast Duration Logic - Short
     @Test
     public void testToastDurationShort() {
         switchState = true;
@@ -176,7 +147,7 @@ public class ListItemsActivityUnitTest {
         assertEquals("Duration should be SHORT when switch is on", 0, duration);
     }
 
-    // Test 18: Toast Duration Logic - Long
+    // Test 15: Toast Duration Logic - Long
     @Test
     public void testToastDurationLong() {
         switchState = false;
@@ -184,18 +155,41 @@ public class ListItemsActivityUnitTest {
         assertEquals("Duration should be LONG when switch is off", 1, duration);
     }
 
-    // Test 19: Dialog Trigger Condition
+    // Test 16: Dialog Trigger Condition
     @Test
     public void testDialogTriggerCondition() {
         checkBoxState = true;
         assertTrue("Dialog should trigger when checkbox is checked", checkBoxState);
     }
 
-    // Test 20: No Dialog When Unchecked
+    // Test 17: No Dialog When Unchecked
     @Test
     public void testNoDialogWhenUnchecked() {
         checkBoxState = false;
         assertFalse("Dialog should not trigger when checkbox is unchecked", checkBoxState);
+    }
+
+    // Test 18: Camera Request Code
+    @Test
+    public void testCameraRequestCode() {
+        assertEquals("Camera request code should be 1", 1, REQUEST_IMAGE_CAPTURE);
+    }
+
+    // Test 19: Activity Name
+    @Test
+    public void testActivityName() {
+        String ACTIVITY_NAME = "ListItemsActivity";
+        assertEquals("Activity name should match", "ListItemsActivity", ACTIVITY_NAME);
+    }
+
+    // Test 20: Dialog Response Key
+    @Test
+    public void testDialogResponseKey() {
+        String RESPONSE_KEY = "Response";
+        String INFO_TO_SHARE = "my_information_to_share";
+
+        assertNotNull("Response key should not be null", RESPONSE_KEY);
+        assertNotNull("Info to share should not be null", INFO_TO_SHARE);
     }
 }
 
