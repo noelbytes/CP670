@@ -1,0 +1,178 @@
+@startuml AndroidAssignments Class Diagram
+
+' Title
+title Android Assignments - Class Diagram
+
+' Styling
+skinparam classAttributeIconSize 0
+skinparam class {
+    BackgroundColor LightBlue
+    ArrowColor Black
+    BorderColor Black
+}
+
+' Android Framework Classes (External)
+abstract class AppCompatActivity {
+}
+
+abstract class ArrayAdapter<T> {
+}
+
+class SharedPreferences {
+    +getString(key: String, defaultValue: String): String
+}
+
+class SharedPreferencesEditor {
+    +putString(key: String, value: String): Editor
+    +remove(key: String): Editor
+    +apply(): void
+}
+
+class Intent {
+    +putExtra(key: String, value: String): Intent
+}
+
+' Application Classes
+
+class LoginActivity {
+    - loginButton: Button
+    - emailEditText: EditText
+    - passwordEditText: EditText
+    - sharedPreferences: SharedPreferences
+    - {static} ACTIVITY_NAME: String = "LoginActivity"
+    + {static} SHARED_PREFERENCES_NAME: String = "UserLoginPreferences"
+    + {static} EMAIL_KEY: String = "DefaultEmail"
+
+    # onCreate(savedInstanceState: Bundle): void
+    - saveUserEmail(emailEditText: EditText, sharedPreferences: SharedPreferences): void
+    - validateInput(): boolean
+    - isValidEmail(email: String): boolean
+    - isValidPassword(password: String): boolean
+    # onResume(): void
+    # onStart(): void
+    # onPause(): void
+    # onStop(): void
+    # onDestroy(): void
+}
+
+class MainActivity {
+    - {static} ACTIVITY_NAME: String = "MainActivity"
+    - {static} LIST_ITEMS_REQUEST_CODE: int = 10
+
+    # onCreate(savedInstanceState: Bundle): void
+    + onSupportNavigateUp(): boolean
+    # onActivityResult(requestCode: int, resultCode: int, data: Intent): void
+    # onResume(): void
+    # onStart(): void
+    # onPause(): void
+    # onStop(): void
+    # onDestroy(): void
+}
+
+class ListItemsActivity {
+    - {static} ACTIVITY_NAME: String = "ListItemsActivity"
+    - {static} REQUEST_IMAGE_CAPTURE: int = 1
+    - imageButton: ImageButton
+    - switchToggle: Switch
+    - checkBox: CheckBox
+    - duration: int
+
+    # onCreate(savedInstanceState: Bundle): void
+    + print(message: String): void
+    + onSupportNavigateUp(): boolean
+    + onActivityResult(requestCode: int, resultCode: int, data: Intent, caller: ComponentCaller): void
+    # onResume(): void
+    # onStart(): void
+    # onPause(): void
+    # onStop(): void
+    # onDestroy(): void
+}
+
+class ChatWindow {
+    - listView: ListView
+    - textInput: EditText
+    - sendButton: Button
+    - chatMessages: ArrayList<String>
+    - messageAdapter: ChatAdapter
+
+    # onCreate(savedInstanceState: Bundle): void
+}
+
+class ChatAdapter {
+    + ChatAdapter(ctx: Context)
+    + getCount(): int
+    + getItem(position: int): String
+    + getView(position: int, convertView: View, parent: ViewGroup): View
+}
+
+' Relationships
+
+' Inheritance
+AppCompatActivity <|-- LoginActivity
+AppCompatActivity <|-- MainActivity
+AppCompatActivity <|-- ListItemsActivity
+AppCompatActivity <|-- ChatWindow
+ArrayAdapter <|-- ChatAdapter
+
+' Composition (Inner class)
+ChatWindow +-- ChatAdapter
+
+' Association
+SharedPreferences +-- SharedPreferencesEditor : <<inner class>>
+
+' Dependencies (uses)
+LoginActivity ..> Intent : <<uses>>
+LoginActivity ..> SharedPreferences : <<uses>>
+LoginActivity ..> SharedPreferencesEditor : <<uses>>
+LoginActivity ..> MainActivity : <<starts>>
+
+MainActivity ..> Intent : <<uses>>
+MainActivity ..> ListItemsActivity : <<starts>>
+MainActivity ..> ChatWindow : <<starts>>
+
+ListItemsActivity ..> Intent : <<uses>>
+
+ChatWindow ..> ChatAdapter : <<uses>>
+
+' Navigation flow (optional)
+LoginActivity -[#Green]-> MainActivity : <<navigates to>>
+MainActivity -[#Green]-> ListItemsActivity : <<navigates to>>
+MainActivity -[#Green]-> ChatWindow : <<navigates to>>
+ListItemsActivity -[#Orange]-> MainActivity : <<returns to>>
+
+' Notes
+note right of LoginActivity
+  Entry point activity.
+  Handles user authentication
+  and email persistence via
+  SharedPreferences.
+end note
+
+note right of MainActivity
+  Main hub activity with
+  parent-child relationships.
+  Launches other activities.
+end note
+
+note right of ChatWindow
+  Chat interface with
+  custom adapter for
+  incoming/outgoing messages.
+end note
+
+note right of ListItemsActivity
+  Demonstrates various UI
+  components: ImageButton,
+  Switch, CheckBox, and
+  camera integration.
+end note
+
+note top of SharedPreferencesEditor
+  SharedPreferences.Editor
+end note
+
+note top of ChatAdapter
+  ChatWindow.ChatAdapter
+end note
+
+@enduml

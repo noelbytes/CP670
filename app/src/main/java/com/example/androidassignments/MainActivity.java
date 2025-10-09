@@ -1,21 +1,13 @@
 package com.example.androidassignments;
 
 import android.app.Activity;
-import android.app.ComponentCaller;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,15 +18,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(ACTIVITY_NAME, "onCreate() called");
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        // Enable the up button in the action bar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         Button button = findViewById(R.id.button);
+        Button startChatButton = findViewById(R.id.startChatButton);
+        
+        startChatButton.setOnClickListener(v -> {
+            Log.i("MainActivity", "User clicked Start Chat");
+            Intent intent = new Intent(MainActivity.this, ChatWindow.class);
+            startActivity(intent);
+        });
 
         button.setOnClickListener(view -> {
            Intent intent = new Intent(MainActivity.this, ListItemsActivity.class);
@@ -43,7 +41,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data, @NonNull ComponentCaller caller) {
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == LIST_ITEMS_REQUEST_CODE) {
             Log.i(ACTIVITY_NAME, "Returned to MainActivity.onActivityResult");
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 if (data != null) {
                     String messagePassed = data.getStringExtra("Response");
                     if (messagePassed != null) {
-                        String text = "ListItemsActivity passed: " + messagePassed;
+                        String text = getString(R.string.list_items_passed, messagePassed);
 
                         int duration = Toast.LENGTH_SHORT;
                         Toast toast = Toast.makeText(this, text, duration);
@@ -90,17 +94,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         Log.i(ACTIVITY_NAME, "onDestroy() called");
         super.onDestroy();
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
-        Log.i(ACTIVITY_NAME, "onSaveInstanceState() called");
-        super.onSaveInstanceState(outState, outPersistentState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        Log.i(ACTIVITY_NAME, "onRestoreInstanceState() called");
-        super.onRestoreInstanceState(savedInstanceState);
     }
 }

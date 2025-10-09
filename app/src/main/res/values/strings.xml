@@ -15,4 +15,21 @@
     <string name="dialog_title">Confirm</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+
+    <string name="no_camera_activity">No camera activity found</string>
+    <string name="switch_on">Switch is On</string>
+    <string name="switch_off">Switch is Off</string>
+    <string name="my_information_to_share">My information to share</string>
+
+    <string name="list_items_passed">ListItemsActivity passed: %1$s</string>
+
+    <string name="email_required">Email is required.</string>
+    <string name="email_cannot_be_empty">Email cannot be empty</string>
+    <string name="enter_valid_email">Enter a valid email address.</string>
+    <string name="invalid_email_format">Invalid email format</string>
+    <string name="password_required">Password is required.</string>
+    <string name="password_cannot_be_empty">Password cannot be empty</string>
+    <string name="start_chat">Start Chat</string>
+    <string name="send">Send</string>
+    <string name="editTextHint">Type a message</string>
 </resources>

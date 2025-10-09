@@ -44,6 +44,11 @@ public class ListItemsActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Enable the up button in the action bar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         imageButton = findViewById(R.id.imageButton); // Store a reference to imageButton
         switchToggle = findViewById(R.id.switchToggle); // Store a reference to switchToggle
         checkBox = findViewById(R.id.checkBox); // Store a reference to checkBox
@@ -55,9 +60,9 @@ public class ListItemsActivity extends AppCompatActivity {
             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             } else {
-                Log.e(ACTIVITY_NAME, "No camera activity found");
+                Log.e(ACTIVITY_NAME, "No camera activity found!");
                 // Show a toast or dialog to the user
-                Toast toast = Toast.makeText(this, "No camera activity found", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(this, getString(R.string.no_camera_activity), Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
@@ -66,10 +71,10 @@ public class ListItemsActivity extends AppCompatActivity {
             String text;
 
             if (isChecked) {
-                text = "Switch is On";
+                text = getString(R.string.switch_on);
                 duration = Toast.LENGTH_SHORT;
             } else {
-                text = "Switch is Off";
+                text = getString(R.string.switch_off);
                 duration = Toast.LENGTH_LONG;
             }
 
@@ -88,7 +93,7 @@ public class ListItemsActivity extends AppCompatActivity {
                                 // User clicked the OK button
                                 Log.d(ACTIVITY_NAME, "User clicked the OK button on the dialog box. Finishing activity");
                                 Intent resultIntent = new Intent();
-                                resultIntent.putExtra("Response", "My information to share");
+                                resultIntent.putExtra("Response", getString(R.string.my_information_to_share));
                                 setResult(Activity.RESULT_OK, resultIntent);
                                 finish(); // Finish the current activity and return to the MainActivity
                             }
@@ -121,6 +126,12 @@ public class ListItemsActivity extends AppCompatActivity {
         Log.i(ACTIVITY_NAME, "Inside the print method");
         Toast toast = Toast.makeText(this, message, duration);
         toast.show();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
     @Override

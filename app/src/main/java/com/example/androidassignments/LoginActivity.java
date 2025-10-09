@@ -102,16 +102,16 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isValidEmail(String email) {
         if (TextUtils.isEmpty(email)) {
             Log.e(ACTIVITY_NAME, "Email is empty"); // Added a log for logging the empty email error
-            emailEditText.setError("Email is required.");
+            emailEditText.setError(getString(R.string.email_required));
             emailEditText.requestFocus();
-            Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.email_cannot_be_empty), Toast.LENGTH_SHORT).show();
             return false;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Log.e(ACTIVITY_NAME, "Invalid email format"); // Added a log for logging the Invalid email format error
-            emailEditText.setError("Enter a valid email address.");
+            emailEditText.setError(getString(R.string.enter_valid_email));
             emailEditText.requestFocus();
-            Toast.makeText(this, "Invalid email format", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.invalid_email_format), Toast.LENGTH_SHORT).show();
             return false;
         }
         emailEditText.setError(null); // Clear error if validation passes
@@ -126,9 +126,9 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isValidPassword(String password) {
         if (TextUtils.isEmpty(password)) {
             Log.e(ACTIVITY_NAME, "Password is empty"); // Added a log for logging the empty password error
-            passwordEditText.setError("Password is required.");
+            passwordEditText.setError(getString(R.string.password_required));
             passwordEditText.requestFocus();
-            Toast.makeText(this, "Password cannot be empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.password_cannot_be_empty), Toast.LENGTH_SHORT).show();
             return false;
         }
         passwordEditText.setError(null); // Clear error if validation passes
