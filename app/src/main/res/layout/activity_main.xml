@@ -26,7 +26,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="375dp" />
+        tools:layout_editor_absoluteY="375dp"
+        style="@style/CustomButtonStyle" />
 
     <Button
         android:id="@+id/startChatButton"
@@ -35,7 +36,18 @@
         android:text="@string/start_chat"
         app:layout_constraintTop_toBottomOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/CustomButtonStyle" />
+
+    <Button
+        android:id="@+id/testToolbarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/test_toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/startChatButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/CustomButtonStyle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

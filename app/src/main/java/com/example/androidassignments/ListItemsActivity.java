@@ -2,7 +2,6 @@ package com.example.androidassignments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ComponentCaller;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -135,8 +134,8 @@ public class ListItemsActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data, @NonNull ComponentCaller caller) {
-        super.onActivityResult(requestCode, resultCode, data, caller);
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         Log.i(ACTIVITY_NAME, "onActivityResult() called. Request code: " + requestCode + ", Result code: " + resultCode);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             if (data != null && data.getExtras() != null) {

@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:text="@string/loginLabel"
         android:backgroundTint="@color/material_green"
+        style="@style/CustomButtonStyle"
         />
 
 </LinearLayout>

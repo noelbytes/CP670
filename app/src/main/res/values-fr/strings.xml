@@ -34,4 +34,9 @@
     <string name="start_chat">Démarrer le chat</string>
     <string name="send">Envoyer</string>
     <string name="editTextHint">Entrez un message</string>
+    <string name="new_message_hint">Entrez votre message</string>
+    <string name="welcome_testtoolbar">Bienvenue dans l\'activité TestToolbar!</string>
+    <string name="test_toolbar">Tester la barre d\'outils</string>
+    <string name="about">À propos</string>
+    <string name="dialog_go_back_title">Voulez-vous revenir en arrière?</string>
 </resources>

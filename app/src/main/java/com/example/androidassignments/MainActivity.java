@@ -27,10 +27,17 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.button);
         Button startChatButton = findViewById(R.id.startChatButton);
-        
+        Button testToolbarButton = findViewById(R.id.testToolbarButton);
+
         startChatButton.setOnClickListener(v -> {
             Log.i("MainActivity", "User clicked Start Chat");
             Intent intent = new Intent(MainActivity.this, ChatWindow.class);
+            startActivity(intent);
+        });
+
+        testToolbarButton.setOnClickListener(v -> {
+            Log.i("MainActivity", "User clicked Test Toolbar");
+            Intent intent = new Intent(MainActivity.this, TestToolbar.class);
             startActivity(intent);
         });
 

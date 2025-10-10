@@ -17,11 +17,11 @@ import java.util.ArrayList;
 
 public class ChatWindow extends AppCompatActivity {
 
-    private ListView listView;
-    private EditText textInput;
-    private Button sendButton;
-    private ArrayList<String> chatMessages;
-    private ChatAdapter messageAdapter;
+    ListView listView;
+    EditText textInput;
+    Button sendButton;
+    ArrayList<String> chatMessages;
+    ChatAdapter messageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class ChatWindow extends AppCompatActivity {
         listView.setAdapter(messageAdapter);
 
         sendButton.setOnClickListener(v -> {
-            String message = textInput.getText().toString();
+            String message = textInput.getText().toString().trim();
             if (!message.isEmpty()) {
                 chatMessages.add(message);
                 messageAdapter.notifyDataSetChanged();
@@ -46,7 +46,7 @@ public class ChatWindow extends AppCompatActivity {
         });
     }
 
-    private class ChatAdapter extends ArrayAdapter<String> {
+    public class ChatAdapter extends ArrayAdapter<String> {
         public ChatAdapter(Context ctx) {
             super(ctx, 0);
         }

@@ -18,6 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidAssignments">
         <activity
+            android:name=".TestToolbar"
+            android:exported="false"
+            android:label="Test Toolbar"
+            android:theme="@style/Theme.AndroidAssignments.NoActionBar" />
+        <activity
             android:name=".ChatWindow"
             android:exported="false"
             android:parentActivityName=".LoginActivity"
@@ -51,7 +56,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
         </activity>
-
     </application>
 
 </manifest>
