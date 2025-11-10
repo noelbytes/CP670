@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Full French translations for the app strings -->
     <string name="app_name">AndroidAssignments</string>
-    <string name="hello_message">Bonjour le monde!</string>
+    <string name="hello_message">Bonjour le monde !</string>
     <string name="ButtonText">Je suis un bouton</string>
-    <string name="loginLabel">Se connecter</string>
-    <string name="loginTextPlaceholder">Nom de connexion</string>
+    <string name="loginLabel">Connexion</string>
+    <string name="loginTextPlaceholder">Nom d\'utilisateur</string>
     <string name="passwordLabel">Mot de passe</string>
-    <string name="switchLabel">Qu\'est-ce que cela fait?</string>
+    <string name="switchLabel">Que fait ceci ?</string>
     <string name="passwordPlaceholder">Entrez le mot de passe</string>
-    <string name="radioButtonLabel">Bouton Radio</string>
+    <string name="radioButtonLabel">Bouton radio</string>
     <string name="checkboxLabel">Case à cocher</string>
     <string name="nextButton">Suivant</string>
 
-    <string name="dialog_message">Voulez-vous quitter?</string>
+    <string name="dialog_message">Voulez-vous quitter ?</string>
     <string name="dialog_title">Confirmer</string>
     <string name="ok">OK</string>
     <string name="cancel">Annuler</string>
 
-    <string name="no_camera_activity">Aucune activité caméra trouvée</string>
-    <string name="switch_on">L\'interrupteur est activé</string>
-    <string name="switch_off">L\'interrupteur est désactivé</string>
+    <string name="no_camera_activity">Aucune activité appareil photo trouvée</string>
+    <string name="switch_on">Le commutateur est activé</string>
+    <string name="switch_off">Le commutateur est désactivé</string>
     <string name="my_information_to_share">Mes informations à partager</string>
 
-    <!-- French translation for MainActivity Toast -->
-    <string name="list_items_passed">ListItemsActivity a passé : %1$s</string>
+    <string name="list_items_passed">ListItemsActivity passé : %1$s</string>
 
     <string name="email_required">L\'e-mail est requis.</string>
     <string name="email_cannot_be_empty">L\'e-mail ne peut pas être vide</string>
@@ -31,12 +31,64 @@
     <string name="invalid_email_format">Format d\'e-mail invalide</string>
     <string name="password_required">Le mot de passe est requis.</string>
     <string name="password_cannot_be_empty">Le mot de passe ne peut pas être vide</string>
-    <string name="start_chat">Démarrer le chat</string>
+    <string name="start_chat">Démarrer la discussion</string>
     <string name="send">Envoyer</string>
-    <string name="editTextHint">Entrez un message</string>
+    <string name="editTextHint">Tapez un message</string>
     <string name="new_message_hint">Entrez votre message</string>
-    <string name="welcome_testtoolbar">Bienvenue dans l\'activité TestToolbar!</string>
-    <string name="test_toolbar">Tester la barre d\'outils</string>
+    <string name="welcome_testtoolbar">Bienvenue dans l\'activité TestToolbar !</string>
+    <string name="test_toolbar">Barre d\'outils de test</string>
     <string name="about">À propos</string>
-    <string name="dialog_go_back_title">Voulez-vous revenir en arrière?</string>
+    <string name="dialog_go_back_title">Voulez-vous revenir en arrière ?</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Premier fragment</string>
+    <string name="second_fragment_label">Deuxième fragment</string>
+    <string name="next">Suivant</string>
+    <string name="previous">Précédent</string>
+
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
+        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
+        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
+        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
+        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
+        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.
+
+        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
+        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
+        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
+        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
+        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
+        bibendum, vel congue leo egestas.
+
+        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
+        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
+        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
+        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
+        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
+        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
+        est.
+
+        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
+        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
+        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
+        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
+        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
+        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
+        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
+        convallis.
+    </string>
+
+    <string name="weather_forecast">Lancer les prévisions météo</string>
+
+    <!-- New strings for WeatherForecast layout -->
+    <string name="weather_image_description">Météo actuelle</string>
+    <string name="temp_current">Actuel : —°C</string>
+    <string name="temp_min_prefix">Min</string>
+    <string name="temp_max_prefix">Max</string>
+    <string name="temp_current_format">%1$s°C</string>
+    <string name="temp_min_format">%1$s %2$s°C</string>
+    <string name="temp_max_format">%1$s %2$s°C</string>
+    <string name="temp_min">Min : —°C</string>
+    <string name="temp_max">Max : —°C</string>
+    <string name="select_city">Sélectionner une ville</string>
 </resources>

@@ -45,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
            Intent intent = new Intent(MainActivity.this, ListItemsActivity.class);
            startActivityForResult(intent, LIST_ITEMS_REQUEST_CODE);
         });
+
+        // Weather forecast button: start WeatherForecast activity when clicked
+        Button weatherForecastButton = findViewById(R.id.weatherForecastButton);
+        weatherForecastButton.setOnClickListener(v -> {
+            Log.i("MainActivity", "User clicked Weather Forecast");
+            Intent intent = new Intent(MainActivity.this, WeatherForecast.class);
+            startActivity(intent);
+        });
     }
 
     @Override
