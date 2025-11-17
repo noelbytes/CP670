@@ -91,4 +91,5 @@
     <string name="temp_min">Min : —°C</string>
     <string name="temp_max">Max : —°C</string>
     <string name="select_city">Sélectionner une ville</string>
+    <string name="message_placeholder">Espace réservé pour le message</string>
 </resources>

@@ -110,4 +110,5 @@
     </string-array>
 
     <string name="select_city">Select city</string>
+    <string name="message_placeholder">Message Here</string>
 </resources>
